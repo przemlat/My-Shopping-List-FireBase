@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.przemek.myshoppinglist.activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lista zakupów"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintVertical_bias="0.072"
-        android:id="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/goListActivity"
-        android:layout_marginTop="40dp" />
-
     <Button
         android:id="@+id/goListActivity"
         android:layout_width="wrap_content"
@@ -28,9 +13,10 @@
         android:text="Lista"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="156dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignStart="@+id/goSettingsActivity"
-        android:layout_marginTop="67dp" />
+        android:layout_marginTop="67dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="45dp" />
 
     <Button
         android:id="@+id/goSettingsActivity"
@@ -39,7 +25,9 @@
         android:text="Opcje"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="262dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginEnd="49dp"
+        android:layout_alignBaseline="@+id/goListActivity"
+        android:layout_alignBottom="@+id/goListActivity"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

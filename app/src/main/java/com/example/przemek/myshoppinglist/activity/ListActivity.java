@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
 
-    private Button mainButton = null;
+    private Button goMainButton;
     private ListView simpleList;
     ArrayList<Product> productList = new ArrayList<>();
     Button bAdd;
@@ -27,7 +27,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-//        mainButton = (Button) findViewById(R.id.goMainActivity);
+        goMainButton = (Button) findViewById(R.id.mainButton);
 
         simpleList = (ListView) findViewById(R.id.list_view);
         bAdd = (Button) findViewById(R.id.bt_dodaj);
@@ -43,13 +43,13 @@ public class ListActivity extends AppCompatActivity {
         final ProductAdapter adapter = new ProductAdapter(this, R.layout.item_row_layout, productList);
         simpleList.setAdapter(adapter);
 
-//        mainButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(view.getContext(), MainActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        goMainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         bAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +58,6 @@ public class ListActivity extends AppCompatActivity {
                 String nazwa = String.valueOf(et_name.getText());
                 int ilosc = Integer.parseInt(String.valueOf(et_quant.getText()));
                 double cena = Double.parseDouble(String.valueOf(et_price.getText()));
-
 
                 productList.add(new Product(nazwa, ilosc, cena));
 

@@ -8,31 +8,29 @@
 
     <Button
         android:id="@+id/goMainActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
+        android:layout_alignParentStart="true"
         android:text="Powrót" />
 
     <Button
         android:id="@+id/applyChanges"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zatwierdź"
-        android:layout_above="@+id/goMainActivity"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="26dp" />
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Zatwierdź" />
 
     <TextView
         android:id="@+id/textFontSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rozmiar czcionki"
-        android:textSize="18sp"
-        android:layout_marginTop="51dp"
         android:layout_below="@+id/buttonBackgroundRed"
-        android:layout_toEndOf="@+id/buttonBackgroundRed" />
+        android:layout_marginTop="60dp"
+        android:layout_toEndOf="@+id/buttonBackgroundWhite"
+        android:text="Rozmiar czcionki:"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/fontSize"
@@ -41,7 +39,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:layout_below="@+id/textFontSize"
-        android:layout_alignEnd="@+id/applyChanges" />
+        android:layout_alignStart="@+id/buttonBackgroundRed" />
 
     <TextView
         android:id="@+id/backGroundColor"
@@ -54,30 +52,30 @@
         android:layout_marginTop="47dp" />
 
     <Button
+        android:id="@+id/buttonBackgroundRed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Red"
-        android:id="@+id/buttonBackgroundRed"
         android:layout_alignBaseline="@+id/buttonBackgroundWhite"
         android:layout_alignBottom="@+id/buttonBackgroundWhite"
-        android:layout_toStartOf="@+id/applyChanges" />
+        android:layout_centerHorizontal="true"
+        android:text="Czerwony" />
 
     <Button
         android:id="@+id/buttonBackgroundWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="White"
-        android:layout_below="@+id/backGroundColor"
-        android:layout_alignEnd="@+id/fontSize"
-        android:layout_marginTop="14dp" />
+        android:layout_alignTop="@+id/backGroundColor"
+        android:layout_marginTop="29dp"
+        android:layout_toStartOf="@+id/backGroundColor"
+        android:text="Biały" />
 
     <Button
         android:id="@+id/buttonBackgroundYellow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yellow"
         android:layout_alignBaseline="@+id/buttonBackgroundWhite"
         android:layout_alignBottom="@+id/buttonBackgroundWhite"
-        android:layout_toEndOf="@+id/backGroundColor" />
+        android:layout_toEndOf="@+id/backGroundColor"
+        android:text="Żółty" />
 
 </RelativeLayout>
