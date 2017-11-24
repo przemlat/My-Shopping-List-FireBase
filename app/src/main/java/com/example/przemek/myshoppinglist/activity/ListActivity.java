@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.przemek.myshoppinglist.R;
 import com.example.przemek.myshoppinglist.adapter.ProductAdapter;
+import com.example.przemek.myshoppinglist.database.DataBaseRepository;
 import com.example.przemek.myshoppinglist.model.Product;
 
 import java.util.ArrayList;
@@ -19,20 +20,24 @@ public class ListActivity extends AppCompatActivity {
 
     private CheckBox checkBox;
     private Button goMainButton;
-    private ListView simpleList;
+    private ListView sampleList;
     ArrayList<Product> productList = new ArrayList<>();
     Button bAdd;
     EditText et_name, et_quant, et_price;
     boolean isItemChecked;
+
+    private DataBaseRepository dbRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        dbRepository = new DataBaseRepository(getBaseContext());
+
         goMainButton = (Button) findViewById(R.id.mainButton);
 
-        simpleList = (ListView) findViewById(R.id.list_view);
+//        sampleList = (ListView) findViewById(R.id.list_view);
         bAdd = (Button) findViewById(R.id.bt_dodaj);
         et_name = (EditText) findViewById(R.id.et_nazwa);
         et_quant = (EditText) findViewById(R.id.et_ilosc);
@@ -44,26 +49,7 @@ public class ListActivity extends AppCompatActivity {
         productList.add(new Product("Water", 3, 1.00, false));
 
         final ProductAdapter adapter = new ProductAdapter(this, R.layout.item_row_layout, productList);
-        simpleList.setAdapter(adapter);
-
-//        checkBox.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(checkBox.isChecked()){
-//                    isItemChecked = true;
-//                    System.out.println("ischecked true");
-//                } else {
-//                    isItemChecked = false;
-//                    System.out.println("ischecked false");
-//                }
-//            }
-//        });
-
-//        public void checkBoxClicked(View view) {
-//            CheckBox checkBox = (CheckBox) view;
-//            if(checkBox.isChecked()) {
-//            }
-//        }
+//        sampleList.setAdapter(adapter);
 
 
         goMainButton.setOnClickListener(new View.OnClickListener() {

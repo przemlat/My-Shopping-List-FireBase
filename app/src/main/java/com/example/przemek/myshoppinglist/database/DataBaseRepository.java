@@ -17,24 +17,24 @@ import java.util.ArrayList;
 public class DataBaseRepository {
     private final SQLiteDatabase database;
 
-    public DataBaseRepository(Context context){
-        File mDatabaseFile = context.getDatabasePath("smb.db").getAbsoluteFile();
+    public DataBaseRepository(Context context) {
+        File mDatabaseFile = context.getDatabasePath("mydb.db").getAbsoluteFile();
         database = SQLiteDatabase.openOrCreateDatabase(mDatabaseFile, null);
-        database.execSQL("CREATE TABLE IF NOT EXISTS CartItems(ItemName VARCHAR PRIMARY KEY, Quantity INTEGER, Price NUMERIC, Selected INTEGER);");
+        database.execSQL("CREATE TABLE IF NOT EXISTS Products(ProductName VARCHAR PRIMARY KEY, Quantity INTEGER, Price NUMERIC, Selected INTEGER);");
     }
 
-    public ArrayList<Product> GetAllItems(){
-        Cursor cursor = database.rawQuery("select * from CartItems", null);
+    public ArrayList<Product> GetAllItems() {
+        Cursor cursor = database.rawQuery("select * from Products", null);
         ArrayList<Product> listResult = new ArrayList<>();
 
         if (cursor.moveToFirst()) {
 
             while (cursor.isAfterLast() == false) {
-                String itemName = cursor.getString(cursor.getColumnIndex("ItemName"));
+                String productName = cursor.getString(cursor.getColumnIndex("ProductName"));
                 int quantity = cursor.getInt(cursor.getColumnIndex("Quantity"));
                 double price = cursor.getDouble(cursor.getColumnIndex("Price"));
                 boolean selected = cursor.getInt(cursor.getColumnIndex("Selected")) == 1 ? true : false;
-                listResult.add(new Product(itemName, quantity, price, selected));
+                listResult.add(new Product(productName, quantity, price, selected));
                 cursor.moveToNext();
             }
         }
@@ -42,25 +42,25 @@ public class DataBaseRepository {
         return listResult;
     }
 
-    public void AddItem(Product product){
+    public void AddItem(Product product) {
         ContentValues insertValues = new ContentValues();
-        insertValues.put("ItemName", product.getName());
+        insertValues.put("ProductName", product.getName());
         insertValues.put("Quantity", product.getQuantity());
         insertValues.put("Price", product.getPrice());
         insertValues.put("Selected", product.isChecked());
-        database.insert("CartItems", null, insertValues);
+        database.insert("Products", null, insertValues);
     }
 
-    public void RemoveItem(Product product){
-        database.delete("CartItems", "ItemName = ?", new String[]{product.getName()});
+    public void RemoveItem(Product product) {
+        database.delete("Products", "ProductName = ?", new String[]{product.getName()});
     }
 
-    public void UpdateItem(Product product, String itemName) {
+    public void UpdateItem(Product product, String productName) {
         ContentValues insertValues = new ContentValues();
-        insertValues.put("ItemName", product.getName());
+        insertValues.put("ProductName", product.getName());
         insertValues.put("Quantity", product.getQuantity());
         insertValues.put("Price", product.getPrice());
         insertValues.put("Selected", product.isChecked());
-        database.update("CartItems", insertValues, "ItemName = ?", new String[]{itemName});
+        database.update("Products", insertValues, "ProductName = ?", new String[]{productName});
     }
 }
