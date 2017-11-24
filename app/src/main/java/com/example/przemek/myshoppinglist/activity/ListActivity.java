@@ -22,7 +22,7 @@ public class ListActivity extends AppCompatActivity {
     private CheckBox checkBox;
     private Button goMainButton;
     private ListView sampleList;
-    Button buttonAdd, buttonDelete, buttonEdit;
+    Button buttonAdd, buttonEdit;
     EditText et_name, et_quant, et_price;
     ProductAdapter adapter;
     private DataBaseRepository dbRepository;
@@ -36,7 +36,6 @@ public class ListActivity extends AppCompatActivity {
         goMainButton = (Button) findViewById(R.id.mainButton);
         sampleList = (ListView) findViewById(R.id.list_view);
         buttonAdd = (Button) findViewById(R.id.bt_add);
-        buttonDelete = (Button) findViewById(R.id.bt_delete);
         buttonEdit = (Button) findViewById(R.id.buttonEdit);
         et_name = (EditText) findViewById(R.id.et_name);
         et_quant = (EditText) findViewById(R.id.et_quant);
@@ -79,14 +78,6 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-//
-//        buttonEdit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), EditActivity.class);
-//                startActivity(intent);
-//            }
-//        });
     }
 
     private void updateData(){

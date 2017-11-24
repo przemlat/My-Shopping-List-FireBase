@@ -39,6 +39,8 @@ public class ProductAdapter extends ArrayAdapter<Product> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        final Product product = getItem(position);
+
         View v = convertView;
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         v = inflater.inflate(R.layout.item_row_layout, null);
@@ -50,11 +52,20 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         textView2.setText(String.valueOf(productsList.get(position).getQuantity()));
         textView3.setText(String.valueOf(productsList.get(position).getPrice()));
 
+        final String name = textView.getText().toString();
+        final String quant = textView2.getText().toString();
+        final String price = textView3.getText().toString();
+
         Button edit_button = (Button) v.findViewById(R.id.buttonEdit);
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               myContext.startActivity(new Intent(myContext, EditActivity.class));
+                Intent intent = new Intent(myContext, EditActivity.class);
+                intent.putExtra("name", name);
+                intent.putExtra("quant", quant);
+                intent.putExtra("price", price);
+                myContext.startActivity(intent);
+
             }
         });
 

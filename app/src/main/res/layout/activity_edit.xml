@@ -9,14 +9,14 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/et_cartitem"
+        android:layout_alignBottom="@+id/et_name"
         android:layout_alignParentTop="true"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:text="Nazwa" />
 
     <EditText
-        android:id="@+id/et_cartitem"
+        android:id="@+id/et_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/et_cartitem"
+        android:layout_below="@+id/et_name"
         android:ems="10"
         android:inputType="number" />
 
