@@ -74,10 +74,7 @@ public class ListActivity extends AppCompatActivity {
                 et_price.setText("");
                 et_quant.setText("");
 
-                ArrayList<Product> products = dbRepository.getAllItems();
-                adapter.clear();
-                adapter.addAll(products);
-                adapter.notifyDataSetChanged();
+                updateData();
 
             }
         });
@@ -90,6 +87,13 @@ public class ListActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
+    }
+
+    private void updateData(){
+        ArrayList<Product> items = dbRepository.getAllItems();
+        adapter.clear();
+        adapter.addAll(items);
+        adapter.notifyDataSetChanged();
     }
 
     private final AdapterView.OnItemLongClickListener itemLongClickListener
