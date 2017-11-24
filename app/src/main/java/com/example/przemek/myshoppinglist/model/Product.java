@@ -8,16 +8,16 @@ public class Product {
     private String name;
     private int quantity;
     private double price;
-    private boolean isChecked;
+//    private boolean isChecked;
 
     public Product() {
     }
 
-    public Product(String name, int quantity, double price, boolean isChecked) {
+    public Product(String name, int quantity, double price) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
-        this.isChecked = isChecked;
+//        this.isChecked = isChecked;
     }
 
     public String getName() {
@@ -44,11 +44,11 @@ public class Product {
         this.price = price;
     }
 
-    public boolean isChecked() {
-        return isChecked;
-    }
-
-    public void setChecked(boolean checked) {
-        isChecked = checked;
-    }
+//    public boolean isChecked() {
+//        return isChecked;
+//    }
+//
+//    public void setChecked(boolean checked) {
+//        isChecked = checked;
+//    }
 }
