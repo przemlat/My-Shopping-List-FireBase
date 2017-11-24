@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -16,11 +17,13 @@ import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
 
+    private CheckBox checkBox;
     private Button goMainButton;
     private ListView simpleList;
     ArrayList<Product> productList = new ArrayList<>();
     Button bAdd;
     EditText et_name, et_quant, et_price;
+    boolean isItemChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +37,34 @@ public class ListActivity extends AppCompatActivity {
         et_name = (EditText) findViewById(R.id.et_nazwa);
         et_quant = (EditText) findViewById(R.id.et_ilosc);
         et_price = (EditText) findViewById(R.id.et_cena);
+        checkBox = (CheckBox) findViewById(R.id.checkBox);
 
-
-        productList.add(new Product("Milk", 1, 2.90));
-        productList.add(new Product("Banana", 2, 3.20));
-        productList.add(new Product("Water", 3, 1.00));
+        productList.add(new Product("Milk", 1, 2.90, false));
+        productList.add(new Product("Banana", 2, 3.20, false));
+        productList.add(new Product("Water", 3, 1.00, false));
 
         final ProductAdapter adapter = new ProductAdapter(this, R.layout.item_row_layout, productList);
         simpleList.setAdapter(adapter);
+
+//        checkBox.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(checkBox.isChecked()){
+//                    isItemChecked = true;
+//                    System.out.println("ischecked true");
+//                } else {
+//                    isItemChecked = false;
+//                    System.out.println("ischecked false");
+//                }
+//            }
+//        });
+
+//        public void checkBoxClicked(View view) {
+//            CheckBox checkBox = (CheckBox) view;
+//            if(checkBox.isChecked()) {
+//            }
+//        }
+
 
         goMainButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,13 +78,15 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String nazwa = String.valueOf(et_name.getText());
-                int ilosc = Integer.parseInt(String.valueOf(et_quant.getText()));
-                double cena = Double.parseDouble(String.valueOf(et_price.getText()));
+                String itemName = String.valueOf(et_name.getText());
+                int itemQuant = Integer.parseInt(String.valueOf(et_quant.getText()));
+                double itemPrice = Double.parseDouble(String.valueOf(et_price.getText()));
+                boolean itemIsChecked = false;
 
-                productList.add(new Product(nazwa, ilosc, cena));
+                productList.add(new Product(itemName, itemQuant, itemPrice, itemIsChecked));
 
                 adapter.notifyDataSetChanged();
+
                 et_name.setText("");
                 et_price.setText("");
                 et_quant.setText("");
