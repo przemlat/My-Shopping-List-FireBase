@@ -23,7 +23,7 @@
         android:layout_marginBottom="75dp">
 
         <EditText
-            android:id="@+id/et_nazwa"
+            android:id="@+id/et_name"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="105dp"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/et_ilosc"
+            android:id="@+id/et_quant"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="105dp"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/et_cena"
+            android:id="@+id/et_price"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="105dp"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:inputType="numberDecimal" />
 
         <Button
-            android:id="@+id/bt_dodaj"
+            android:id="@+id/bt_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.51"
@@ -68,7 +68,7 @@
         android:text="Powrót" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/bt_delete"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"

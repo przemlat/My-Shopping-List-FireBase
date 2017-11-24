@@ -23,7 +23,7 @@ public class DataBaseRepository {
         database.execSQL("CREATE TABLE IF NOT EXISTS Products(ProductName VARCHAR PRIMARY KEY, Quantity INTEGER, Price NUMERIC, Selected INTEGER);");
     }
 
-    public ArrayList<Product> GetAllItems() {
+    public ArrayList<Product> getAllItems() {
         Cursor cursor = database.rawQuery("select * from Products", null);
         ArrayList<Product> listResult = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class DataBaseRepository {
         return listResult;
     }
 
-    public void AddItem(Product product) {
+    public void addItem(Product product) {
         ContentValues insertValues = new ContentValues();
         insertValues.put("ProductName", product.getName());
         insertValues.put("Quantity", product.getQuantity());
@@ -51,11 +51,11 @@ public class DataBaseRepository {
         database.insert("Products", null, insertValues);
     }
 
-    public void RemoveItem(Product product) {
+    public void removeItem(Product product) {
         database.delete("Products", "ProductName = ?", new String[]{product.getName()});
     }
 
-    public void UpdateItem(Product product, String productName) {
+    public void updateItem(Product product, String productName) {
         ContentValues insertValues = new ContentValues();
         insertValues.put("ProductName", product.getName());
         insertValues.put("Quantity", product.getQuantity());

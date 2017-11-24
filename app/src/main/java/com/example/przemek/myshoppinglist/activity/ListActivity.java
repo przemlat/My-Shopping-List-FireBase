@@ -22,9 +22,8 @@ public class ListActivity extends AppCompatActivity {
     private Button goMainButton;
     private ListView sampleList;
     ArrayList<Product> productList = new ArrayList<>();
-    Button bAdd;
+    Button buttonAdd, buttonDelete;
     EditText et_name, et_quant, et_price;
-    boolean isItemChecked;
 
     private DataBaseRepository dbRepository;
 
@@ -37,19 +36,16 @@ public class ListActivity extends AppCompatActivity {
 
         goMainButton = (Button) findViewById(R.id.mainButton);
 
-//        sampleList = (ListView) findViewById(R.id.list_view);
-        bAdd = (Button) findViewById(R.id.bt_dodaj);
-        et_name = (EditText) findViewById(R.id.et_nazwa);
-        et_quant = (EditText) findViewById(R.id.et_ilosc);
-        et_price = (EditText) findViewById(R.id.et_cena);
+        sampleList = (ListView) findViewById(R.id.list_view);
+        buttonAdd = (Button) findViewById(R.id.bt_add);
+        buttonAdd = (Button) findViewById(R.id.bt_delete);
+        et_name = (EditText) findViewById(R.id.et_name);
+        et_quant = (EditText) findViewById(R.id.et_quant);
+        et_price = (EditText) findViewById(R.id.et_price);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
 
-        productList.add(new Product("Milk", 1, 2.90, false));
-        productList.add(new Product("Banana", 2, 3.20, false));
-        productList.add(new Product("Water", 3, 1.00, false));
-
-        final ProductAdapter adapter = new ProductAdapter(this, R.layout.item_row_layout, productList);
-//        sampleList.setAdapter(adapter);
+        final ProductAdapter adapter = new ProductAdapter(this, R.layout.item_row_layout, dbRepository.getAllItems());
+        sampleList.setAdapter(adapter);
 
 
         goMainButton.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +56,7 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        bAdd.setOnClickListener(new View.OnClickListener() {
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -69,13 +65,24 @@ public class ListActivity extends AppCompatActivity {
                 double itemPrice = Double.parseDouble(String.valueOf(et_price.getText()));
                 boolean itemIsChecked = false;
 
-                productList.add(new Product(itemName, itemQuant, itemPrice, itemIsChecked));
+                dbRepository.addItem(new Product(itemName, itemQuant, itemPrice, itemIsChecked));
 
                 adapter.notifyDataSetChanged();
-
                 et_name.setText("");
                 et_price.setText("");
                 et_quant.setText("");
+
+                ArrayList<Product> products = dbRepository.getAllItems();
+                adapter.clear();
+                adapter.addAll(products);
+                adapter.notifyDataSetChanged();
+
+            }
+        });
+
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
