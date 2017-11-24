@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.przemek.myshoppinglist.R;
+import com.example.przemek.myshoppinglist.adapter.ProductAdapter;
 import com.example.przemek.myshoppinglist.model.Product;
 
 import java.util.ArrayList;
@@ -17,11 +18,9 @@ public class ListActivity extends AppCompatActivity {
 
     private Button mainButton = null;
 
-    private ListView listView;
-//    ListAdapterProduct listAdapterProduct;
-    List<Product> productList = new ArrayList<>();
+    private ListView listView, simpleList;
 
-    Product mleko = null;
+    ArrayList<Product> productList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +29,16 @@ public class ListActivity extends AppCompatActivity {
 
         mainButton = (Button) findViewById(R.id.goMainActivity);
 
+        simpleList = (ListView) findViewById(R.id.listView);
+
+
+        productList.add(new Product("Milk", 1, 2.90, false));
+        productList.add(new Product("Banana", 2, 3.20, false));
+        productList.add(new Product("Water", 3, 1.00, false));
+
+        ProductAdapter adapter = new ProductAdapter(this, R.layout.item_row_layout, productList);
+        simpleList.setAdapter(adapter);
+
         mainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,18 +46,5 @@ public class ListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//        mleko.setName("Mleko");
-//        mleko.setPrice(4.0);
-//        mleko.setQuantity(2);
-//        productList.add(mleko);
-//
-//        listView = (ListView) findViewById(R.id.listView);
-//
-//        listAdapterProduct = new ListAdapterProduct(this, productList);
-//        listView.setAdapter(listAdapterProduct);
-
     }
-
-
 }

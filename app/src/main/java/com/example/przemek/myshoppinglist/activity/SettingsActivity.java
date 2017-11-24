@@ -118,6 +118,4 @@ public class SettingsActivity extends AppCompatActivity {
         fontSizeToSave.setText(textFromPreferences);
         settingsLayout.setBackgroundColor(bgColorFromPreferences);
     }
-
-
 }
