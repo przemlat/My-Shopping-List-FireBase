@@ -44,7 +44,10 @@ public class ListActivity extends AppCompatActivity {
         checkBox = (CheckBox) findViewById(R.id.checkBox);
 
         adapter = new ProductAdapter(this, R.layout.item_row_layout, dbRepository.getAllItems());
+
         sampleList.setAdapter(adapter);
+        sampleList.setLongClickable(true);
+        sampleList.setOnItemLongClickListener(itemLongClickListener);
 
 
         goMainButton.setOnClickListener(new View.OnClickListener() {
@@ -79,12 +82,6 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-//        buttonDelete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
 //
 //        buttonEdit.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -93,10 +90,6 @@ public class ListActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-
-        sampleList.setLongClickable(true);
-        sampleList.setOnItemLongClickListener(itemLongClickListener);
-
     }
 
     private final AdapterView.OnItemLongClickListener itemLongClickListener
