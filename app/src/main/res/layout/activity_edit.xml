@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
-        android:text="Produkt" />
+        android:text="Nazwa" />
 
     <EditText
         android:id="@+id/et_cartitem"
@@ -63,5 +63,24 @@
         android:inputType="numberDecimal"
         android:layout_below="@+id/et_quantity"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/bt_goList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bt_save"
+        android:layout_alignBottom="@+id/bt_save"
+        android:layout_toEndOf="@+id/textView3"
+        android:text="Powrót" />
+
+    <Button
+        android:id="@+id/bt_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/et_price"
+        android:layout_below="@+id/et_price"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="53dp"
+        android:text="Zapisz" />
 
 </RelativeLayout>

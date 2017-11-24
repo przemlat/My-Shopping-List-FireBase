@@ -60,7 +60,7 @@
             android:layout_weight="0.14" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonEdit"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"

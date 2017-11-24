@@ -22,8 +22,7 @@ public class ListActivity extends AppCompatActivity {
     private CheckBox checkBox;
     private Button goMainButton;
     private ListView sampleList;
-    ArrayList<Product> productList = new ArrayList<>();
-    Button buttonAdd, buttonDelete;
+    Button buttonAdd, buttonDelete, buttonEdit;
     EditText et_name, et_quant, et_price;
     ProductAdapter adapter;
     private DataBaseRepository dbRepository;
@@ -38,6 +37,7 @@ public class ListActivity extends AppCompatActivity {
         sampleList = (ListView) findViewById(R.id.list_view);
         buttonAdd = (Button) findViewById(R.id.bt_add);
         buttonDelete = (Button) findViewById(R.id.bt_delete);
+        buttonEdit = (Button) findViewById(R.id.buttonEdit);
         et_name = (EditText) findViewById(R.id.et_name);
         et_quant = (EditText) findViewById(R.id.et_quant);
         et_price = (EditText) findViewById(R.id.et_price);
@@ -85,8 +85,14 @@ public class ListActivity extends AppCompatActivity {
 //
 //            }
 //        });
-
-
+//
+//        buttonEdit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(v.getContext(), EditActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         sampleList.setLongClickable(true);
         sampleList.setOnItemLongClickListener(itemLongClickListener);
@@ -99,6 +105,11 @@ public class ListActivity extends AppCompatActivity {
         public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
             Product item = adapter.getItem(position);
             dbRepository.removeItem(item);
+
+            ArrayList<Product> products = dbRepository.getAllItems();
+            adapter.clear();
+            adapter.addAll(products);
+            adapter.notifyDataSetChanged();
 
             return true;
         }
