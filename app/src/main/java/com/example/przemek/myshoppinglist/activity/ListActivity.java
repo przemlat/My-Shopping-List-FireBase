@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ public class ListActivity extends AppCompatActivity {
     ArrayList<Product> productList = new ArrayList<>();
     Button buttonAdd, buttonDelete;
     EditText et_name, et_quant, et_price;
-
+    ProductAdapter adapter;
     private DataBaseRepository dbRepository;
 
     @Override
@@ -33,18 +34,16 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         dbRepository = new DataBaseRepository(getBaseContext());
-
         goMainButton = (Button) findViewById(R.id.mainButton);
-
         sampleList = (ListView) findViewById(R.id.list_view);
         buttonAdd = (Button) findViewById(R.id.bt_add);
-        buttonAdd = (Button) findViewById(R.id.bt_delete);
+        buttonDelete = (Button) findViewById(R.id.bt_delete);
         et_name = (EditText) findViewById(R.id.et_name);
         et_quant = (EditText) findViewById(R.id.et_quant);
         et_price = (EditText) findViewById(R.id.et_price);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
 
-        final ProductAdapter adapter = new ProductAdapter(this, R.layout.item_row_layout, dbRepository.getAllItems());
+        adapter = new ProductAdapter(this, R.layout.item_row_layout, dbRepository.getAllItems());
         sampleList.setAdapter(adapter);
 
 
@@ -80,12 +79,29 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-        buttonDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        buttonDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
-            }
-        });
+
+
+        sampleList.setLongClickable(true);
+        sampleList.setOnItemLongClickListener(itemLongClickListener);
+
     }
+
+    private final AdapterView.OnItemLongClickListener itemLongClickListener
+            = new AdapterView.OnItemLongClickListener() {
+        @Override
+        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            Product item = adapter.getItem(position);
+            dbRepository.removeItem(item);
+
+            return true;
+        }
+    };
 
 }
