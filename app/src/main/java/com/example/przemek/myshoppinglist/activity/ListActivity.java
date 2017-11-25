@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class ListActivity extends AppCompatActivity {
 
     private CheckBox checkBox;
-    private Button goMainButton;
     private ListView sampleList;
     Button buttonAdd, buttonEdit;
     EditText et_name, et_quant, et_price;
@@ -33,7 +32,6 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         dbRepository = new DataBaseRepository(getBaseContext());
-        goMainButton = (Button) findViewById(R.id.mainButton);
         sampleList = (ListView) findViewById(R.id.list_view);
         buttonAdd = (Button) findViewById(R.id.bt_add);
         buttonEdit = (Button) findViewById(R.id.buttonEdit);
@@ -47,15 +45,6 @@ public class ListActivity extends AppCompatActivity {
         sampleList.setAdapter(adapter);
         sampleList.setLongClickable(true);
         sampleList.setOnItemLongClickListener(itemLongClickListener);
-
-
-        goMainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
