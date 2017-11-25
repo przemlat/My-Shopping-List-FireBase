@@ -37,7 +37,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         final Product product = getItem(position);
 
@@ -56,7 +56,11 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                               myContext.startActivity(new Intent(myContext, EditActivity.class));
+                Intent intent = new Intent(myContext, EditActivity.class);
+                intent.putExtra("productName", productsList.get(position).getName());
+                intent.putExtra("productQuant", productsList.get(position).getQuantity());
+                intent.putExtra("productPrice", productsList.get(position).getPrice());
+                myContext.startActivity(intent);
 
             }
         });

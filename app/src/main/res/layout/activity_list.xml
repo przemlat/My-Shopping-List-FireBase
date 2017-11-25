@@ -23,7 +23,7 @@
 
 
         <EditText
-            android:id="@+id/et_name"
+            android:id="@+id/et_name_edit"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="105dp"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/et_price"
+            android:id="@+id/et_price_edit"
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="105dp"
             android:layout_height="wrap_content"

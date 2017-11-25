@@ -1,6 +1,5 @@
 package com.example.przemek.myshoppinglist.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -35,9 +34,9 @@ public class ListActivity extends AppCompatActivity {
         sampleList = (ListView) findViewById(R.id.list_view);
         buttonAdd = (Button) findViewById(R.id.bt_add);
         buttonEdit = (Button) findViewById(R.id.buttonEdit);
-        et_name = (EditText) findViewById(R.id.et_name);
+        et_name = (EditText) findViewById(R.id.et_name_edit);
         et_quant = (EditText) findViewById(R.id.et_quant);
-        et_price = (EditText) findViewById(R.id.et_price);
+        et_price = (EditText) findViewById(R.id.et_price_edit);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
 
         adapter = new ProductAdapter(this, R.layout.item_row_layout, dbRepository.getAllItems());
