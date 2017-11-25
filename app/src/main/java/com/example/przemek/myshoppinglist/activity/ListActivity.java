@@ -1,5 +1,6 @@
 package com.example.przemek.myshoppinglist.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,7 +21,7 @@ public class ListActivity extends AppCompatActivity {
 
     private CheckBox checkBox;
     private ListView sampleList;
-    Button buttonAdd, buttonEdit;
+    Button buttonAdd, buttonEdit, buttonMain;
     EditText et_name, et_quant, et_price;
     ProductAdapter adapter;
     private DataBaseRepository dbRepository;
@@ -38,12 +39,21 @@ public class ListActivity extends AppCompatActivity {
         et_quant = (EditText) findViewById(R.id.et_quant);
         et_price = (EditText) findViewById(R.id.et_price_edit);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
+        buttonMain = (Button) findViewById(R.id.goMainFromList);
 
         adapter = new ProductAdapter(this, R.layout.item_row_layout, dbRepository.getAllItems());
 
         sampleList.setAdapter(adapter);
         sampleList.setLongClickable(true);
         sampleList.setOnItemLongClickListener(itemLongClickListener);
+
+        buttonMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
