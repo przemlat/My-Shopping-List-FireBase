@@ -52,6 +52,15 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         textView2.setText(String.valueOf(productsList.get(position).getQuantity()));
         textView3.setText(String.valueOf(productsList.get(position).getPrice()));
 
+        Button edit_button = (Button) v.findViewById(R.id.buttonEdit);
+        edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                               myContext.startActivity(new Intent(myContext, EditActivity.class));
+
+            }
+        });
+
         return v;
     }
 }
