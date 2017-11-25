@@ -58,21 +58,21 @@ public class ListActivity extends AppCompatActivity {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
+                    String itemName = String.valueOf(et_name.getText());
+                    int itemQuant = Integer.parseInt(String.valueOf(et_quant.getText()));
+                    double itemPrice = Double.parseDouble(String.valueOf(et_price.getText()));
+                    boolean itemIsChecked = false;
 
-                String itemName = String.valueOf(et_name.getText());
-                int itemQuant = Integer.parseInt(String.valueOf(et_quant.getText()));
-                double itemPrice = Double.parseDouble(String.valueOf(et_price.getText()));
-                boolean itemIsChecked = false;
+                    dbRepository.addItem(new Product(itemName, itemQuant, itemPrice, itemIsChecked));
 
-                dbRepository.addItem(new Product(itemName, itemQuant, itemPrice, itemIsChecked));
+                    adapter.notifyDataSetChanged();
+                    et_name.setText("");
+                    et_price.setText("");
+                    et_quant.setText("");
 
-                adapter.notifyDataSetChanged();
-                et_name.setText("");
-                et_price.setText("");
-                et_quant.setText("");
-
-                updateData();
-
+                    updateData();
+                } catch (Exception e){}
             }
         });
 
