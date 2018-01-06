@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1089768251105",
+    "firebase_url": "https://my-shopping-list-firebase.firebaseio.com",
+    "project_id": "my-shopping-list-firebase",
+    "storage_bucket": "my-shopping-list-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089768251105:android:46101579d6ba271f",
+        "android_client_info": {
+          "package_name": "com.example.przemek.myshoppinglist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089768251105-0b2107sru646a1nui7dbqilkl5npqkdk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.przemek.myshoppinglist",
+            "certificate_hash": "347cc9877da95b4c0a25a29cff613e7fe3153a66"
+          }
+        },
+        {
+          "client_id": "1089768251105-9dr15i9v0np9biiqg1tc97hf02po55qe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw7TIMVAeiThqfIJBg6d-uVyZltOR_LjM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089768251105-9dr15i9v0np9biiqg1tc97hf02po55qe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

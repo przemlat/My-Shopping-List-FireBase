@@ -1,13 +1,12 @@
 package com.example.przemek.myshoppinglist.database;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-
 import com.example.przemek.myshoppinglist.model.Product;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -15,54 +14,39 @@ import java.util.ArrayList;
  */
 
 public class DataBaseRepository {
-    private final SQLiteDatabase database;
 
-    // checking cloned repository
+    FirebaseDatabase databaseFireBase = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = databaseFireBase.getReference();
 
-    public DataBaseRepository(Context context) {
-        File mDatabaseFile = context.getDatabasePath("mydb.db").getAbsoluteFile();
-        database = SQLiteDatabase.openOrCreateDatabase(mDatabaseFile, null);
-        database.execSQL("CREATE TABLE IF NOT EXISTS Products(ProductName VARCHAR PRIMARY KEY, Quantity INTEGER, Price NUMERIC, Selected INTEGER);");
-    }
+    public ArrayList<Product> getAllItems(){
 
-    public ArrayList<Product> getAllItems() {
-        Cursor cursor = database.rawQuery("select * from Products", null);
-        ArrayList<Product> listResult = new ArrayList<>();
-
-        if (cursor.moveToFirst()) {
-
-            while (cursor.isAfterLast() == false) {
-                String productName = cursor.getString(cursor.getColumnIndex("ProductName"));
-                int quantity = cursor.getInt(cursor.getColumnIndex("Quantity"));
-                double price = cursor.getDouble(cursor.getColumnIndex("Price"));
-                boolean selected = cursor.getInt(cursor.getColumnIndex("Selected")) == 1 ? true : false;
-                listResult.add(new Product(productName, quantity, price, selected));
-                cursor.moveToNext();
+        final ArrayList<Product> listResult = new ArrayList<>();
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                listResult.clear();
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    Product product = postSnapshot.getValue(Product.class);
+                    listResult.add(product);
+                }
             }
-        }
-
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
         return listResult;
     }
 
     public void addItem(Product product) {
-        ContentValues insertValues = new ContentValues();
-        insertValues.put("ProductName", product.getName());
-        insertValues.put("Quantity", product.getQuantity());
-        insertValues.put("Price", product.getPrice());
-        insertValues.put("Selected", product.isChecked());
-        database.insert("Products", null, insertValues);
+        myRef.child(product.getName()).setValue(product);
     }
 
     public void removeItem(Product product) {
-        database.delete("Products", "ProductName = ?", new String[]{product.getName()});
+        myRef.child(product.getName()).removeValue();
     }
 
     public void updateItem(Product product, String productName) {
-        ContentValues insertValues = new ContentValues();
-        insertValues.put("ProductName", product.getName());
-        insertValues.put("Quantity", product.getQuantity());
-        insertValues.put("Price", product.getPrice());
-        insertValues.put("Selected", product.isChecked());
-        database.update("Products", insertValues, "ProductName = ?", new String[]{productName});
+        myRef.child(productName).removeValue();
+        myRef.child(product.getName()).setValue(product);
     }
 }

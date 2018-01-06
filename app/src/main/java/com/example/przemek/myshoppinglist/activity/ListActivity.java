@@ -31,7 +31,7 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        dbRepository = new DataBaseRepository(getBaseContext());
+        dbRepository = new DataBaseRepository();
         sampleList = (ListView) findViewById(R.id.list_view);
         buttonAdd = (Button) findViewById(R.id.bt_add);
         buttonEdit = (Button) findViewById(R.id.buttonEdit);

@@ -36,7 +36,7 @@ public class EditActivity extends AppCompatActivity {
         et_quant.setText(String.valueOf(productQuant));
         et_price.setText(String.valueOf(productPrice));
 
-        dbRepository = new DataBaseRepository(this);
+        dbRepository = new DataBaseRepository();
 
         goListButton.setOnClickListener(new View.OnClickListener() {
             @Override
