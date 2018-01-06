@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class DataBaseRepository {
     private final SQLiteDatabase database;
 
+    // checking cloned repository
+
     public DataBaseRepository(Context context) {
         File mDatabaseFile = context.getDatabasePath("mydb.db").getAbsoluteFile();
         database = SQLiteDatabase.openOrCreateDatabase(mDatabaseFile, null);
